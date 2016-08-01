@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper">
+	    <div class="header">
+	    <h1>Welcome!</h1>
+	    </div> <!-- endheader -->
+	    <div class="register">
+	    	<h4>Register</h4>
+	    	<p>please use Pa$$w0rd as the password </p>
+	    	<form action="/users/create" method="post">
+	    		<label for="name">Name: </label>
+	    		<input type="text" name="name" placeholder="full-name">
+	    		<form action="/users/login" method='post'>
+		    	<label for="email">Email: </label>
+		    	<input type="text" name="email" placeholder="email@email.com">
+	    		<label for="password">Password: </label>
+	    		<input type="password" name="password">
+	    		<p>*password should be at least 8 characters long</p>
+	    		<label for="confirm">Confirm PW: </label>
+	    		<input type="password" name="confirm">
+	    		<label for="birthday">Date of Birth</label>
+	    		<input type="date" name="birthday">
+	    		<input type="submit" value="Register">
+	    	</form>
+	    </div><!-- endregister -->
+	    <div class="login">
+	    	<form action="/users/login" method='post'>
+	    	<label for="email">Email: </label>
+	    	<input type="text" name="email" placeholder="email@email.com" value="{{ session ['email'] }}">
+	    	<label for="password">Password: </label>
+	    	<input type="password" name="password">
+	    	<input type="submit" value="Login">
+	    	</form>
+	    </div><!-- endlogin -->
+	    {% with messages = get_flashed_messages() %}
+   			{% if messages %}
+      			{% for message in messages %}
+         			{{ message }}
+      			{% endfor %}
+   			{% endif %}
+		{% endwith %}
+    </div><!-- endwrapper -->
+  </body>
+</html>
